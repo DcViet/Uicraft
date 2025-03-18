@@ -1,0 +1,36 @@
+{
+  "cli": {
+    "version": ">= 15.0.15",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "firebase": {
+          "config": "./google-services.json"
+        }
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "firebase": {
+          "config": "./google-services.json"
+        }
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "firebase": {
+          "config": "./google-services.json"
+        }
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

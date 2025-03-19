@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ImageBackground } from 'react-native';
 import { router } from 'expo-router';
 
 const LoginScreen = () => {
@@ -7,12 +7,10 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    router.push('/neubrutalism/verification')
-    // console.log('Login attempted with:', { email, password });
+    router.push('/neubrutalism/verification');
   };
 
   const handleForgotPassword = () => {
-    // Logic to handle forgot password
     console.log('Forgot Password pressed');
   };
 
@@ -20,48 +18,73 @@ const LoginScreen = () => {
     router.push('/neubrutalism/signUp');
   };
 
+  const handleGoogleLogin = () => {
+    console.log('Google Login pressed');
+  };
+
+  const handleGithubLogin = () => {
+    console.log('GitHub Login pressed');
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Login</Text>
+      {/* <Text style={[styles.header]}>Login</Text> */}
 
-      {/* Logo or Icon (Optional) */}
-      <Image
-        source={{ uri: 'https://img.icons8.com/ios-filled/100/000000/user.png' }} // Placeholder logo
-        style={styles.logo}
-      />
+      {/* <Image
+        source={{ uri: 'https://img.icons8.com/ios-filled/100/000000/user.png' }}
+        style={[styles.logo, styles.neubrutalism]}
+      /> */}
+      <ImageBackground
+        // source={require('@/assets/images/react-logo.png')}  
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      >
+        <Image
+          source={require('@/assets/images/react-logo.png')}  
+          style={[styles.logo, styles.neubrutalism]}
+        />
+      </ImageBackground>
 
-      {/* Email Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Email or Username"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        placeholderTextColor="#CCCCCC"
-      />
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Email or Username</Text>
+        <TextInput
+          style={[styles.input, styles.neubrutalism]}
+          placeholder="Email or Username"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          placeholderTextColor="#999999"
+        />
 
-      {/* Password Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        placeholderTextColor="#CCCCCC"
-      />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={[styles.input, styles.neubrutalism]}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          placeholderTextColor="#999999"
+        />
+      </View>
 
-      {/* Forgot Password Link */}
       <TouchableOpacity onPress={handleForgotPassword}>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
 
-      {/* Login Button */}
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+      <TouchableOpacity style={[styles.loginButton, styles.neubrutalism]} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
 
-      {/* Sign Up Link */}
+      <View style={styles.socialButtonsContainer}>
+        <TouchableOpacity style={[styles.socialButton, styles.neubrutalism]} onPress={handleGoogleLogin}>
+          <Text style={styles.socialButtonText}>Google</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.socialButton, styles.neubrutalism]} onPress={handleGithubLogin}>
+          <Text style={styles.socialButtonText}>GitHub</Text>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity onPress={handleSignUp}>
         <Text style={styles.signUpText}>Don’t have an account? Sign Up</Text>
       </TouchableOpacity>
@@ -70,86 +93,110 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Base styles
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#FFFFFF', // Raw white background
+    padding: 24,
+    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     fontSize: 48,
-    fontWeight: '900', // Ultra-bold
+    fontWeight: '900',
     color: '#000000',
     textTransform: 'uppercase',
     letterSpacing: 2,
-    marginBottom: 20,
-    backgroundColor: '#FFDD00', // Bright yellow
-    padding: 15,
-    borderWidth: 6,
-    borderColor: '#000000',
-    alignSelf: 'flex-start',
+    marginBottom: 32,
+  },
+  backgroundImage: {
+    width: 160,
+    height: 160,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 40,
   },
   logo: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
-    marginBottom: 30,
-    borderWidth: 6,
-    borderColor: '#000000',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
+    width: 120,
+    height: 120,
+    marginBottom: 40,
   },
-  input: {
-    height: 60,
-    borderWidth: 6,
-    borderColor: '#000000',
-    backgroundColor: '#FFFFFF',
+  inputContainer: {
+    width: '100%',
     marginBottom: 20,
-    paddingHorizontal: 15,
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#000000',
-    shadowColor: '#000000',
-    shadowOffset: { width: 8, height: 8 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
-  forgotPassword: {
+  label: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#FF2D00', // Bold red
-    textAlign: 'right',
-    marginBottom: 20,
+    color: '#333333',
+    marginBottom: 8,
+  },
+  input: {
+    height: 56,
+    backgroundColor: '#FFFFFF',
+    marginBottom: 16,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000000',
+    width: '100%',
+  },
+  forgotPassword: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FF2D00',
+    alignSelf: 'flex-end',
+    marginBottom: 24,
   },
   loginButton: {
-    backgroundColor: '#FF2D00', // Bold red
-    borderWidth: 6,
-    borderColor: '#000000',
-    paddingVertical: 15,
+    backgroundColor: '#FF2D00',
+    paddingVertical: 16,
+    width: '100%',
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
-    marginBottom: 20,
+    marginBottom: 24,
   },
   loginButtonText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '900',
     color: '#FFFFFF',
     textTransform: 'uppercase',
-    letterSpacing: 2,
+    letterSpacing: 1.5,
+  },
+  socialButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 24,
+  },
+  socialButton: {
+    backgroundColor: '#FFDD00',
+    paddingVertical: 12,
+    width: '48%',
+    alignItems: 'center',
+  },
+  socialButtonText: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
   },
   signUpText: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#000000',
-    textAlign: 'center',
+    color: '#333333',
     textDecorationLine: 'underline',
+  },
+
+  // Neubrutalism effects
+  neubrutalism: {
+    borderWidth: 4,
+    borderColor: '#000000',
+    shadowColor: '#000000',
+    shadowOffset: { width: 8, height: 8 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 8,
+    borderRadius: 10,
   },
 });
 

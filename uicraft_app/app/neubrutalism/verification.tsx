@@ -3,53 +3,46 @@ import React, { useState, RefObject } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const VerificationScreen = () => {
-  const [code, setCode] = useState<string[]>(['', '', '', '', '']); // Explicitly type code as string array
+  const [code, setCode] = useState<string[]>(['', '', '', '', '']);
 
   const handleVerify = () => {
-    // Logic to handle verification
     const verificationCode = code.join('');
     console.log('Verification code submitted:', verificationCode);
-    router.push ('/neubrutalism/productCard')
+    router.push('/neubrutalism/productCard');
   };
 
   const handleResendCode = () => {
-    // Logic to resend the verification code
     console.log('Resend Code pressed');
   };
 
   const handleCodeChange = (text: string, index: number) => {
-    // Update the code array when a digit is entered
     const newCode = [...code];
     newCode[index] = text;
     setCode(newCode);
 
-    // Auto-focus the next input (if not the last one)
     if (text && index < 4) {
-      (refs[index + 1] as RefObject<TextInput>).current?.focus(); // Safe focus call
+      (refs[index + 1] as RefObject<TextInput>).current?.focus();
     }
   };
 
-  // Type refs as an array of RefObject<TextInput>
   const refs: RefObject<TextInput>[] = Array(5)
     .fill(null)
     .map(() => React.createRef<TextInput>());
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Verification</Text>
+      <Text style={[styles.header, styles.neubrutalism]}>Verification</Text>
 
-      {/* Description */}
       <Text style={styles.description}>
         Enter the 5-digit code sent to your email or phone number.
       </Text>
 
-      {/* Verification Code Inputs */}
       <View style={styles.codeContainer}>
         {code.map((digit, index) => (
           <TextInput
             key={index}
-            ref={refs[index]} // Assign ref to TextInput
-            style={styles.codeInput}
+            ref={refs[index]}
+            style={[styles.codeInput, styles.neubrutalism]}
             value={digit}
             onChangeText={(text) => handleCodeChange(text, index)}
             keyboardType="numeric"
@@ -61,12 +54,10 @@ const VerificationScreen = () => {
         ))}
       </View>
 
-      {/* Verify Button */}
-      <TouchableOpacity style={styles.verifyButton} onPress={handleVerify}>
+      <TouchableOpacity style={[styles.verifyButton, styles.neubrutalism]} onPress={handleVerify}>
         <Text style={styles.verifyButtonText}>Verify</Text>
       </TouchableOpacity>
 
-      {/* Resend Code Link */}
       <TouchableOpacity onPress={handleResendCode}>
         <Text style={styles.resendText}>Resend Code</Text>
       </TouchableOpacity>
@@ -75,23 +66,20 @@ const VerificationScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Base styles without Neubrutalism effects
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#FFFFFF', // Raw white background
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
   },
   header: {
     fontSize: 48,
-    fontWeight: '900', // Ultra-bold
+    fontWeight: '900',
     color: '#000000',
     textTransform: 'uppercase',
     letterSpacing: 2,
     marginBottom: 20,
-    backgroundColor: '#FFDD00', // Bright yellow
-    padding: 15,
-    borderWidth: 6,
-    borderColor: '#000000',
     alignSelf: 'flex-start',
   },
   description: {
@@ -109,30 +97,16 @@ const styles = StyleSheet.create({
   codeInput: {
     width: 50,
     height: 60,
-    borderWidth: 6,
-    borderColor: '#000000',
     backgroundColor: '#FFFFFF',
     fontSize: 24,
     fontWeight: '900',
     color: '#000000',
     textAlign: 'center',
-    shadowColor: '#000000',
-    shadowOffset: { width: 8, height: 8 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   verifyButton: {
-    backgroundColor: '#FF2D00', // Bold red
-    borderWidth: 6,
-    borderColor: '#000000',
+    backgroundColor: '#FF2D00',
     paddingVertical: 15,
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
     marginBottom: 20,
   },
   verifyButtonText: {
@@ -145,9 +119,23 @@ const styles = StyleSheet.create({
   resendText: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#FF2D00', // Bold red
+    color: '#FF2D00',
     textAlign: 'center',
     textDecorationLine: 'underline',
+  },
+
+  // Neubrutalism effects separated into a single class
+  neubrutalism: {
+    backgroundColor: '#FFDD00', // Applied only to header in original
+    borderWidth: 6,
+    borderColor: '#000000',
+    padding: 15, // Applied only to header in original
+    shadowColor: '#000000',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 10,
+    borderRadius: 10,
   },
 });
 

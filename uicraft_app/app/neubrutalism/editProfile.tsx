@@ -10,7 +10,6 @@ interface User {
 }
 
 const EditProfileScreen = () => {
-  // Initial user data (replace with dynamic data from authentication or context)
   const [user, setUser] = useState<User>({
     name: 'Harry Williams',
     email: 'harry.williams@example.com',
@@ -19,7 +18,6 @@ const EditProfileScreen = () => {
   });
 
   const handleSave = () => {
-    // Logic to save changes
     console.log('Profile updated:', user);
   };
 
@@ -34,11 +32,10 @@ const EditProfileScreen = () => {
   return (
     <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
       <View style={styles.container}>
-        <Text style={styles.header}>Edit Profile</Text>
+        <Text style={[styles.header, styles.neubrutalism]}>Edit Profile</Text>
 
-        {/* Name Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.neubrutalism]}
           value={user.name}
           onChangeText={(text) => setUser({ ...user, name: text })}
           placeholder="Full Name"
@@ -46,9 +43,8 @@ const EditProfileScreen = () => {
           placeholderTextColor="#CCCCCC"
         />
 
-        {/* Email Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.neubrutalism]}
           value={user.email}
           onChangeText={(text) => setUser({ ...user, email: text })}
           placeholder="Email"
@@ -57,8 +53,7 @@ const EditProfileScreen = () => {
           placeholderTextColor="#CCCCCC"
         />
 
-        {/* Notifications Toggle */}
-        <View style={styles.toggleContainer}>
+        <View style={[styles.toggleContainer, styles.neubrutalism]}>
           <Text style={styles.toggleLabel}>Enable Notifications</Text>
           <Switch
             trackColor={{ false: '#767577', true: '#FF2D00' }}
@@ -69,8 +64,7 @@ const EditProfileScreen = () => {
           />
         </View>
 
-        {/* Fingerprint Toggle */}
-        <View style={styles.toggleContainer}>
+        <View style={[styles.toggleContainer, styles.neubrutalism]}>
           <Text style={styles.toggleLabel}>Enable Fingerprint</Text>
           <Switch
             trackColor={{ false: '#767577', true: '#FF2D00' }}
@@ -81,8 +75,7 @@ const EditProfileScreen = () => {
           />
         </View>
 
-        {/* Save Button */}
-        <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+        <TouchableOpacity style={[styles.saveButton, styles.neubrutalism]} onPress={handleSave}>
           <Text style={styles.saveButtonText}>Save Changes</Text>
         </TouchableOpacity>
       </View>
@@ -91,9 +84,10 @@ const EditProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Base styles without Neubrutalism effects
   scrollContainer: {
     flex: 1,
-    backgroundColor: '#FFFFFF', // Raw white background
+    backgroundColor: '#FFFFFF',
   },
   contentContainer: {
     padding: 20,
@@ -103,32 +97,21 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 48,
-    fontWeight: '900', // Ultra-bold
+    fontWeight: '900',
     color: '#000000',
     textTransform: 'uppercase',
     letterSpacing: 2,
     marginBottom: 20,
-    backgroundColor: '#FFDD00', // Bright yellow
-    padding: 15,
-    borderWidth: 6,
-    borderColor: '#000000',
     alignSelf: 'flex-start',
   },
   input: {
     height: 60,
-    borderWidth: 6,
-    borderColor: '#000000',
     backgroundColor: '#FFFFFF',
     marginBottom: 20,
     paddingHorizontal: 15,
     fontSize: 18,
     fontWeight: '700',
     color: '#000000',
-    shadowColor: '#000000',
-    shadowOffset: { width: 8, height: 8 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   toggleContainer: {
     flexDirection: 'row',
@@ -137,13 +120,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 10,
     backgroundColor: '#000000',
-    borderWidth: 6,
-    borderColor: '#FFFFFF',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   toggleLabel: {
     fontSize: 20,
@@ -153,23 +129,30 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   saveButton: {
-    backgroundColor: '#FF2D00', // Bold red
-    borderWidth: 6,
-    borderColor: '#000000',
+    backgroundColor: '#FF2D00',
     paddingVertical: 15,
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
+
   saveButtonText: {
     fontSize: 24,
     fontWeight: '900',
     color: '#FFFFFF',
     textTransform: 'uppercase',
     letterSpacing: 2,
+  },
+
+  // Neubrutalism effects separated into a single class
+  neubrutalism: {
+    backgroundColor: '#FFDD00', // Applied only to header in original
+    borderWidth: 6,
+    borderColor: '#000000', // Varies in original (#FFFFFF for toggleContainer)
+    padding: 15, // Varies in original (10 for toggleContainer)
+    shadowColor: '#000000',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 10,
   },
 });
 

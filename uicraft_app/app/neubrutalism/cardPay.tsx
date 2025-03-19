@@ -3,16 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const CardPayScreen = () => {
   const handleAddCard = () => {
-    // Logic to add a new card
     console.log('Add a new card pressed');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>My Cards</Text>
+      <Text style={[styles.header, styles.neubrutalism]}>My Cards</Text>
 
-      {/* Card 1: Black Visa Card */}
-      <View style={styles.card}>
+      <View style={[styles.card, styles.neubrutalism]}>
         <Text style={styles.cardName}>Harry Williams</Text>
         <Text style={styles.cardNumber}>4567 8907 3567 3542</Text>
         <View style={styles.validityContainer}>
@@ -20,13 +18,12 @@ const CardPayScreen = () => {
           <Text style={styles.validityText}>Valid til 09/25</Text>
         </View>
         <Image
-          source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png' }} // Visa logo
+          source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png' }}
           style={styles.cardLogo}
         />
       </View>
 
-      {/* Card 2: Green Card with Icon */}
-      <View style={[styles.card, styles.greenCard]}>
+      <View style={[styles.card, styles.greenCard, styles.neubrutalism]}>
         <Text style={styles.cardName}>Harry Williams</Text>
         <Text style={styles.cardNumber}>4567 8907 3567 3542</Text>
         <View style={styles.validityContainer}>
@@ -34,13 +31,12 @@ const CardPayScreen = () => {
           <Text style={styles.validityText}>Valid til 09/25</Text>
         </View>
         <Image
-          source={{ uri: 'https://img.icons8.com/ios-filled/50/000000/credit-card.png' }} // Placeholder icon
+          source={{ uri: 'https://img.icons8.com/ios-filled/50/000000/credit-card.png' }}
           style={styles.cardIcon}
         />
       </View>
 
-      {/* Add Card Button */}
-      <TouchableOpacity style={styles.addCardButton} onPress={handleAddCard}>
+      <TouchableOpacity style={[styles.addCardButton, styles.neubrutalism]} onPress={handleAddCard}>
         <Text style={styles.addCardText}>Add a new card</Text>
       </TouchableOpacity>
     </View>
@@ -48,38 +44,28 @@ const CardPayScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Base styles without Neubrutalism effects
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#FFFFFF', // Raw white background
+    backgroundColor: '#FFFFFF',
   },
   header: {
     fontSize: 36,
-    fontWeight: '900', // Ultra-bold
+    fontWeight: '900',
     color: '#000000',
     textTransform: 'uppercase',
     letterSpacing: 2,
     marginBottom: 20,
-    backgroundColor: '#FFDD00', // Bright yellow
-    padding: 10,
-    borderWidth: 4,
-    borderColor: '#000000',
     alignSelf: 'flex-start',
   },
   card: {
-    backgroundColor: '#000000', // Stark black
+    backgroundColor: '#000000',
     padding: 20,
     marginBottom: 20,
-    borderWidth: 6, // Thick, unrefined borders
-    borderColor: '#FFFFFF',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   greenCard: {
-    backgroundColor: '#00FF00', // Bright green for contrast
+    backgroundColor: '#00FF00',
   },
   cardName: {
     fontSize: 20,
@@ -120,23 +106,28 @@ const styles = StyleSheet.create({
     right: 10,
   },
   addCardButton: {
-    backgroundColor: '#FF2D00', // Bold red
-    borderWidth: 6,
-    borderColor: '#000000',
+    backgroundColor: '#FF2D00',
     padding: 20,
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: { width: 8, height: 8 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
-    borderStyle: 'dashed', // Dashed border for raw feel
   },
   addCardText: {
     fontSize: 20,
     fontWeight: '800',
     color: '#FFFFFF',
     textTransform: 'uppercase',
+  },
+
+  // Neubrutalism effects separated into a single class
+  neubrutalism: {
+    backgroundColor: '#FFDD00', // Applied only to header in original
+    borderWidth: 6, // Varies in original (4 for header)
+    borderColor: '#FFFFFF', // Varies in original (#000000 for header and addCardButton)
+    shadowColor: '#000000',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 10,
+    borderStyle: 'dashed', // Applied only to addCardButton in original
   },
 });
 

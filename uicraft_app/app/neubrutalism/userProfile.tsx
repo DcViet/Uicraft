@@ -17,51 +17,43 @@ const user: User = {
 
 const UserProfileScreen = () => {
   const handleEditProfile = () => {
-    // Logic to navigate to edit profile screen
     console.log('Edit Profile pressed');
   };
 
   const handleChangePassword = () => {
-    // Logic to navigate to change password screen
     console.log('Change Password pressed');
   };
 
   const handlePaymentMethods = () => {
-    // Logic to navigate to payment methods screen
     console.log('Payment Methods pressed');
   };
 
   const handleLogout = () => {
-    // Logic to handle logout
     console.log('Logout pressed');
   };
 
   return (
     <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
       <View style={styles.container}>
-        <Text style={styles.header}>User Profile</Text>
+        <Text style={[styles.header, styles.neubrutalism]}>User Profile</Text>
 
-        {/* User Profile Image */}
-        <Image source={{ uri: user.profileImage }} style={styles.profileImage} />
+        <Image source={{ uri: user.profileImage }} style={[styles.profileImage, styles.neubrutalism]} />
 
-        {/* User Name */}
-        <Text style={styles.userName}>{user.name}</Text>
+        <Text style={[styles.userName, styles.neubrutalism]}>{user.name}</Text>
 
-        {/* User Email */}
         <Text style={styles.userEmail}>{user.email}</Text>
 
-        {/* Settings Menu */}
         <View style={styles.menuContainer}>
-          <TouchableOpacity style={styles.menuItem} onPress={handleEditProfile}>
+          <TouchableOpacity style={[styles.menuItem, styles.neubrutalism]} onPress={handleEditProfile}>
             <Text style={styles.menuText}>Edit Profile</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={handleChangePassword}>
+          <TouchableOpacity style={[styles.menuItem, styles.neubrutalism]} onPress={handleChangePassword}>
             <Text style={styles.menuText}>Change Password</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={handlePaymentMethods}>
+          <TouchableOpacity style={[styles.menuItem, styles.neubrutalism]} onPress={handlePaymentMethods}>
             <Text style={styles.menuText}>Payment Methods</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
+          <TouchableOpacity style={[styles.menuItem, styles.neubrutalism]} onPress={handleLogout}>
             <Text style={styles.menuText}>Logout</Text>
           </TouchableOpacity>
         </View>
@@ -71,9 +63,10 @@ const UserProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Base styles without Neubrutalism effects
   scrollContainer: {
     flex: 1,
-    backgroundColor: '#FFFFFF', // Raw white background
+    backgroundColor: '#FFFFFF',
   },
   contentContainer: {
     padding: 20,
@@ -83,15 +76,11 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 48,
-    fontWeight: '900', // Ultra-bold
+    fontWeight: '900',
     color: '#000000',
     textTransform: 'uppercase',
     letterSpacing: 2,
     marginBottom: 20,
-    backgroundColor: '#FFDD00', // Bright yellow
-    padding: 15,
-    borderWidth: 6,
-    borderColor: '#000000',
     alignSelf: 'flex-start',
   },
   profileImage: {
@@ -99,13 +88,6 @@ const styles = StyleSheet.create({
     height: 150,
     alignSelf: 'center',
     marginBottom: 20,
-    borderWidth: 6,
-    borderColor: '#000000',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   userName: {
     fontSize: 28,
@@ -113,10 +95,6 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
     marginBottom: 10,
-    backgroundColor: '#FFDD00',
-    padding: 10,
-    borderWidth: 4,
-    borderColor: '#000000',
   },
   userEmail: {
     fontSize: 20,
@@ -129,16 +107,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   menuItem: {
-    backgroundColor: '#000000', // Stark black
+    backgroundColor: '#000000',
     padding: 15,
-    borderWidth: 6,
-    borderColor: '#FFFFFF',
     marginBottom: 10,
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   menuText: {
     fontSize: 20,
@@ -146,6 +117,19 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textTransform: 'uppercase',
     letterSpacing: 1,
+  },
+
+  // Neubrutalism effects separated into a single class
+  neubrutalism: {
+    backgroundColor: '#FFDD00', // Applied only to header and userName in original
+    padding: 15, // Varies in original (15 for most, 10 for userName)
+    borderWidth: 6, // Varies in original (6 for most, 4 for userName)
+    borderColor: '#000000', // Varies in original (#FFFFFF for menuItem)
+    shadowColor: '#000000',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 10,
   },
 });
 

@@ -27,17 +27,15 @@ const SignUpScreen = () => {
         contentContainerStyle={styles.scrollView} 
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.header}>Sign Up</Text>
+        <Text style={[styles.header, styles.neubrutalism]}>Sign Up</Text>
 
-        {/* Logo */}
         <Image
           source={{ uri: 'https://img.icons8.com/ios-filled/100/000000/add-user-male.png' }}
-          style={styles.logo}
+          style={[styles.logo, styles.neubrutalism]}
         />
 
-        {/* Full Name Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.neubrutalism]}
           placeholder="Full Name"
           value={fullName}
           onChangeText={setFullName}
@@ -45,9 +43,8 @@ const SignUpScreen = () => {
           placeholderTextColor="#CCCCCC"
         />
 
-        {/* Email Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.neubrutalism]}
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
@@ -56,9 +53,8 @@ const SignUpScreen = () => {
           placeholderTextColor="#CCCCCC"
         />
 
-        {/* Password Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.neubrutalism]}
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
@@ -66,9 +62,8 @@ const SignUpScreen = () => {
           placeholderTextColor="#CCCCCC"
         />
 
-        {/* Confirm Password Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.neubrutalism]}
           placeholder="Confirm Password"
           value={confirmPassword}
           onChangeText={setConfirmPassword}
@@ -76,12 +71,10 @@ const SignUpScreen = () => {
           placeholderTextColor="#CCCCCC"
         />
 
-        {/* Sign Up Button */}
-        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+        <TouchableOpacity style={[styles.signUpButton, styles.neubrutalism]} onPress={handleSignUp}>
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
-        {/* Login Redirect */}
         <TouchableOpacity onPress={handleLoginRedirect}>
           <Text style={styles.loginText}>Already have an account? Login</Text>
         </TouchableOpacity>
@@ -91,6 +84,7 @@ const SignUpScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Base styles without Neubrutalism effects
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -107,10 +101,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 2,
     marginBottom: 20,
-    backgroundColor: '#FFDD00',
-    padding: 15,
-    borderWidth: 6,
-    borderColor: '#000000',
     alignSelf: 'flex-start',
   },
   logo: {
@@ -118,41 +108,21 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: 'center',
     marginBottom: 30,
-    borderWidth: 6,
-    borderColor: '#000000',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
   },
   input: {
     height: 60,
     width: '100%',
-    borderWidth: 6,
-    borderColor: '#000000',
     backgroundColor: '#FFFFFF',
     marginBottom: 20,
     paddingHorizontal: 15,
     fontSize: 18,
     fontWeight: '700',
     color: '#000000',
-    shadowColor: '#000000',
-    shadowOffset: { width: 8, height: 8 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
   },
   signUpButton: {
     backgroundColor: '#FF2D00',
-    borderWidth: 6,
-    borderColor: '#000000',
     paddingVertical: 15,
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 10,
     marginBottom: 20,
     width: '100%',
   },
@@ -169,6 +139,19 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
     textDecorationLine: 'underline',
+  },
+
+  // Neubrutalism effects separated into a single class
+  neubrutalism: {
+    backgroundColor: '#FFDD00', // Applied only to header in original
+    borderWidth: 6,
+    borderColor: '#000000',
+    padding: 15, // Applied only to header in original
+    shadowColor: '#000000',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 10,
   },
 });
 
